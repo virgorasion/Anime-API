@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/typeAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Type: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/episodAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Episodes: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/statusAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Status: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/airedAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Aired: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/priemierAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Priemiered: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/broadcastAnimeDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Broadcast: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/producersAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Producers: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/studiosAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Studios: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/licescorsAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Licensors: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/sourceAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Source: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/genresAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:text="Genres: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/durationAnimeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Duration: "
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/ratingAnieDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Rating: "
+        android:textSize="17sp" />
+
+</LinearLayout>
