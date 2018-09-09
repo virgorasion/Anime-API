@@ -53,7 +53,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         recyclerViewHolder.startEndAnime.setText(String.format("%s - %s", topItem.getStart_date(), topItem.getEnd_date()));
         recyclerViewHolder.membersAnime.setText(String.format("%s Members", members.format(topItem.getMembers())));
         recyclerViewHolder.scoreAnime.setText(String.valueOf(topItem.getScore()));
-        recyclerViewHolder.imgScore.setImageResource(R.drawable.ic_star_score);
         
         recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

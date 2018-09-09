@@ -25,7 +25,8 @@ public class AnimeDetailAdapter extends RecyclerView.Adapter<AnimeDetailAdapter.
     private List<ProducerItem> producerItemList;
     private List<StudioItem> studioItemList;
 
-    public AnimeDetailAdapter(List<GenreItem> genreItemList, List<ProducerItem> producerItemList, List<StudioItem> studioItemList) {
+    public AnimeDetailAdapter(List<AnimeDetail> animeDetailList, List<GenreItem> genreItemList, List<ProducerItem> producerItemList, List<StudioItem> studioItemList) {
+        this.animeDetailList = animeDetailList;
         this.genreItemList = genreItemList;
         this.producerItemList = producerItemList;
         this.studioItemList = studioItemList;
@@ -42,12 +43,43 @@ public class AnimeDetailAdapter extends RecyclerView.Adapter<AnimeDetailAdapter.
     public void onBindViewHolder(@NonNull AnimeDetailHolder animeDetailHolder, int i) {
         final AnimeDetail animeDetail = animeDetailList.get(i);
 
+        StringBuilder producerName = new StringBuilder();
+        if (animeDetail.getProducer() != null){
+            for (ProducerItem producer : animeDetail.getProducer()){
+                producerName.append(producer.getName()).append(", ");
+            }
+        }
+
+        StringBuilder studioName = new StringBuilder();
+        if (animeDetail.getProducer() != null){
+            for (StudioItem studioItem : animeDetail.getStudio()){
+                if (animeDetail.getStudio().size() > 1){
+                    studioName.append(studioItem.getName()).append(", ");
+                }else {
+                    studioName.append(studioItem.getName());
+                }
+            }
+        }
+
+        StringBuilder genresName = new StringBuilder();
+                if (animeDetail.getGenre() != null){
+                    for (GenreItem genreItem : animeDetail.getGenre()){
+                        genresName.append(genreItem.getName()).append(", ");
+                    }
+                }
+
+
         animeDetailHolder.typeAnimeDetail.setText(String.format("Type : %s", animeDetail.getType()));
-        animeDetailHolder.episodAnimeDetail.setText(String.format("Episodes : %d", String.valueOf(animeDetail.getEpisodes())));
+        animeDetailHolder.episodAnimeDetail.setText(String.format("Episodes : %d", animeDetail.getEpisodes()));
         animeDetailHolder.statusAnimeDetail.setText(String.format("Status : %s", animeDetail.getStatus()));
-        animeDetailHolder.airedAnimeDetail.setText(String.format("Aired : %s", animeDetail.getAired()));
         animeDetailHolder.priemierAnimeDetail.setText(String.format("Premiered : %s", animeDetail.getPremiered()));
         animeDetailHolder.broadcastAnimeDetail.setText(String.format("Broadcast : %s", animeDetail.getBroadcast()));
+        animeDetailHolder.producersAnimeDetail.setText(String.format("Producers : %s", producerName.toString()));
+        animeDetailHolder.studiosAnimeDetail.setText(String.format("Studios : %s", studioName.toString()));
+        animeDetailHolder.sourceAnimeDetail.setText(String.format("Source : %s", animeDetail.getSource()));
+        animeDetailHolder.genresAnimeDetail.setText(String.format("Genres : %s", genresName.toString()));
+        animeDetailHolder.durationAnimeDetail.setText(String.format("Duration : %s", animeDetail.getDuration()));
+        animeDetailHolder.ratingAnieDetail.setText(String.format("Rating : %s", animeDetail.getRating()));
     }
 
     @Override
@@ -63,8 +95,6 @@ public class AnimeDetailAdapter extends RecyclerView.Adapter<AnimeDetailAdapter.
         TextView episodAnimeDetail;
         @BindView(R.id.statusAnimeDetail)
         TextView statusAnimeDetail;
-        @BindView(R.id.airedAnimeDetail)
-        TextView airedAnimeDetail;
         @BindView(R.id.priemierAnimeDetail)
         TextView priemierAnimeDetail;
         @BindView(R.id.broadcastAnimeDetail)
@@ -73,8 +103,6 @@ public class AnimeDetailAdapter extends RecyclerView.Adapter<AnimeDetailAdapter.
         TextView producersAnimeDetail;
         @BindView(R.id.studiosAnimeDetail)
         TextView studiosAnimeDetail;
-        @BindView(R.id.licescorsAnimeDetail)
-        TextView licescorsAnimeDetail;
         @BindView(R.id.sourceAnimeDetail)
         TextView sourceAnimeDetail;
         @BindView(R.id.genresAnimeDetail)

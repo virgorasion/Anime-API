@@ -19,6 +19,14 @@ public class ProducerItem{
 	@SerializedName("url")
 	private String url;
 
+	public ProducerItem(String name, int malId, String type, String title, String url) {
+		this.name = name;
+		this.malId = malId;
+		this.type = type;
+		this.title = title;
+		this.url = url;
+	}
+
 	public void setName(String name){
 		this.name = name;
 	}

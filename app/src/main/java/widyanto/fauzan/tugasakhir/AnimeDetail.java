@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,6 +58,8 @@ public class AnimeDetail extends AppCompatActivity {
     private List<Fragment> fragments;
     private List<String> tabTitle;
     private RecyclerView.Adapter adapter;
+    private FragmentInformation fragmentInformation;
+    private FragmentSynopsis fragmentSynopsis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,42 +68,52 @@ public class AnimeDetail extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        intent.getStringArrayExtra("MAL_ID");
-
-        fragments = new ArrayList<>();
-        fragments.add(new FragmentInformation());
-        fragments.add(new FragmentSynopsis());
-
-        tabTitle = new ArrayList<>();
-        tabTitle.add("Information");
-        tabTitle.add("Synopsis");
-
-        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),fragments,tabTitle));
-        tabLayout.setupWithViewPager(viewPager);
+        int Mal_id = intent.getIntExtra("MAL_ID",1);
 
         ApiService apiService = DataRetrofit.getData().create(ApiService.class);
-        apiService.getAnimeDetail(intent.getStringArrayExtra("MAL_ID")).enqueue(new Callback<widyanto.fauzan.tugasakhir.Model.AnimeDetail>() {
+        apiService.getAnimeDetail(Mal_id).enqueue(new Callback<widyanto.fauzan.tugasakhir.Model.AnimeDetail>() {
             @Override
             public void onResponse(Call<widyanto.fauzan.tugasakhir.Model.AnimeDetail> call, Response<widyanto.fauzan.tugasakhir.Model.AnimeDetail> response) {
-                Aired itemsAired = response.body().getAired();
-                List<GenreItem> itemsGenre = response.body().getGenre();
-                List<ProducerItem> itemsProducer = response.body().getProducer();
-                List<StudioItem> itemsStudio = response.body().getStudio();
+                List<widyanto.fauzan.tugasakhir.Model.AnimeDetail> animeDetailList = new ArrayList<>();
+                widyanto.fauzan.tugasakhir.Model.AnimeDetail animeDetail = response.body();
+                List<GenreItem> itemsGenre = animeDetail.getGenre();
+                List<ProducerItem> itemsProducer = animeDetail.getProducer();
+                List<StudioItem> itemsStudio = animeDetail.getStudio();
+                animeDetailList.add(animeDetail);
 
                 DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getNumberInstance();
                 DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols();
                 formatSymbols.setGroupingSeparator('.');
                 decimalFormat.setDecimalFormatSymbols(formatSymbols);
 
-                TitleAnime.setText(response.body().getTitleEnglish());
-                Picasso.get().load(response.body().getImageUrl()).into(imageAnime);
-                animeScore.setText(String.valueOf(response.body().getScore()));
-                animeRanked.setText(String.valueOf(response.body().getRank()));
-                animePopularity.setText(String.valueOf(response.body().getPopularity()));
-                animeMembers.setText(String.valueOf(decimalFormat.format(response.body().getMembers())));
-                animeFavorites.setText(String.valueOf(response.body().getFavorites()));
+                TitleAnime.setText(animeDetail.getTitleEnglish());
+                Picasso.get().load(animeDetail.getImageUrl()).into(imageAnime);
+                animeScore.setText(String.format("Score : %s",String.valueOf(animeDetail.getScore())));
+                animeRanked.setText(String.format("Ranked : %s",String.valueOf(animeDetail.getRank())));
+                animePopularity.setText(String.format("Popularity : %s",String.valueOf(animeDetail.getPopularity())));
+                animeMembers.setText(String.format("Members : %s",String.valueOf(decimalFormat.format(animeDetail.getMembers()))));
+                animeFavorites.setText(String.format("Favorites : %s",String.valueOf(animeDetail.getFavorites())));
 
-                adapter = new AnimeDetailAdapter(itemsGenre ,itemsProducer,itemsStudio );
+                fragmentInformation = new FragmentInformation();
+                fragmentInformation.setAnimeDetailList(animeDetailList);
+                fragmentInformation.setGenreItemList(itemsGenre);
+                fragmentInformation.setProducerItemList(itemsProducer);
+                fragmentInformation.setStudioItemList(itemsStudio);
+
+                fragmentSynopsis = new FragmentSynopsis();
+                fragmentSynopsis.setSynopsis(animeDetail.getSynopsis());
+
+                fragments = new ArrayList<>();
+                fragments.add(fragmentInformation);
+                fragments.add(fragmentSynopsis);
+
+                tabTitle = new ArrayList<>();
+                tabTitle.add("Information");
+                tabTitle.add("Synopsis");
+
+                viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),fragments,tabTitle));
+                tabLayout.setupWithViewPager(viewPager);
+
             }
 
             @Override

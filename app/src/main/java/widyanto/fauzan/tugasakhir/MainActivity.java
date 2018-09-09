@@ -3,6 +3,8 @@ package widyanto.fauzan.tugasakhir;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -23,16 +25,20 @@ import retrofit2.Response;
 import widyanto.fauzan.tugasakhir.Adapter.RecyclerAdapter;
 import widyanto.fauzan.tugasakhir.Data.ApiService;
 import widyanto.fauzan.tugasakhir.Data.DataRetrofit;
+import widyanto.fauzan.tugasakhir.Fragment.AiringAnimeFragment;
+import widyanto.fauzan.tugasakhir.Fragment.MovieAnimeFragment;
+import widyanto.fauzan.tugasakhir.Fragment.OvaAnimeFragment;
+import widyanto.fauzan.tugasakhir.Fragment.SpecialAnimeFragment;
+import widyanto.fauzan.tugasakhir.Fragment.TopDefaultAnimeFragment;
+import widyanto.fauzan.tugasakhir.Fragment.TvAnimeFragment;
+import widyanto.fauzan.tugasakhir.Fragment.UpcomingAnimeFragment;
 import widyanto.fauzan.tugasakhir.Model.TopAnime;
 import widyanto.fauzan.tugasakhir.Model.TopAnimeItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter layoutAdapter;
-    private RecyclerView recyclerView;
+    private FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        recyclerView = findViewById(R.id.recyclerView);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,26 +65,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.frameContent, new TopDefaultAnimeFragment());
+        fragmentTransaction.commit();
 
-        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
-
-        apiService.getAllAnime()
-                .enqueue(new Callback<TopAnime>() {
-                    @Override
-                    public void onResponse(Call<TopAnime> call, Response<TopAnime> response) {
-                        List<TopAnimeItem> Items = response.body().getTop();
-                        //Log.d("GET_API", String.valueOf(Items.size()));
-                        layoutAdapter = new RecyclerAdapter(Items);
-                        recyclerView.setAdapter(layoutAdapter);
-                    }
-
-                    @Override
-                    public void onFailure(Call<TopAnime> call, Throwable t) {
-
-                    }
-                });
     }
 
     @Override
@@ -120,18 +110,45 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.topAnime) {
+            fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameContent, new TopDefaultAnimeFragment());
+            fragmentTransaction.commit();
+        } else if (id == R.id.airingAnime) {
+            fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameContent, new AiringAnimeFragment());
+            fragmentTransaction.commit();
+        } else if (id == R.id.movieAnime) {
+            fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameContent, new MovieAnimeFragment());
+            fragmentTransaction.commit();
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.tvAnime) {
+            fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameContent, new TvAnimeFragment());
+            fragmentTransaction.commit();
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.upcomingAnime) {
+            fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameContent, new UpcomingAnimeFragment());
+            fragmentTransaction.commit();
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.specialAnime) {
+            fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameContent, new SpecialAnimeFragment());
+            fragmentTransaction.commit();
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.ovaAnime){
+            fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameContent, new OvaAnimeFragment());
+            fragmentTransaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

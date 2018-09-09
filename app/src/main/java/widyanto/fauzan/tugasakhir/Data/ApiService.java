@@ -11,6 +11,26 @@ public interface ApiService {
     @GET("/v3/top/anime/1")
     Call<TopAnime> getAllAnime();
 
+    @GET("/v3/top/anime/1/airing")
+    Call<TopAnime> getTopAiring();
+
+    @GET("/v3/top/anime/1/movie")
+    Call<TopAnime> getTopMovie();
+
+    @GET("/v3/top/anime/1/ova")
+    Call<TopAnime> getTopOva();
+
+    @GET("/v3/top/anime/1/special")
+    Call<TopAnime> getTopSpecial();
+
+    @GET("/v3/top/anime/1/tv")
+    Call<TopAnime> getTopTv();
+
+    @GET("/v3/top/anime/1/upcoming")
+    Call<TopAnime> getTopUpcoming();
+
     @GET("/anime/{Mal_id}")
-    Call<AnimeDetail> getAnimeDetail(@Path("Mal_id") String[] MalId);
+    Call<AnimeDetail> getAnimeDetail(@Path("Mal_id") int MalId);
+
+
 }
