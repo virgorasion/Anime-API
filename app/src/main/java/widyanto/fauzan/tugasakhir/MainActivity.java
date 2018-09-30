@@ -31,6 +31,7 @@ import widyanto.fauzan.tugasakhir.Data.DataRetrofit;
 import widyanto.fauzan.tugasakhir.Fragment.AiringAnimeFragment;
 import widyanto.fauzan.tugasakhir.Fragment.MovieAnimeFragment;
 import widyanto.fauzan.tugasakhir.Fragment.OvaAnimeFragment;
+import widyanto.fauzan.tugasakhir.Fragment.SearchFragment;
 import widyanto.fauzan.tugasakhir.Fragment.SpecialAnimeFragment;
 import widyanto.fauzan.tugasakhir.Fragment.TopDefaultAnimeFragment;
 import widyanto.fauzan.tugasakhir.Fragment.TvAnimeFragment;
@@ -90,22 +91,27 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+
+        searchView.setQueryHint("Search");
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                fm = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.add(R.id.frameContent, new SearchFragment());
+                fragmentTransaction.commit();
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
