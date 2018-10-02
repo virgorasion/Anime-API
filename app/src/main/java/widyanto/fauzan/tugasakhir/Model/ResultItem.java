@@ -1,6 +1,5 @@
 package widyanto.fauzan.tugasakhir.Model;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
 public class ResultItem{

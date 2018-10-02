@@ -31,8 +31,8 @@ public interface ApiService {
     @GET("/v3/top/anime/1/upcoming")
     Call<TopAnime> getTopUpcoming();
 
-    @GET('search/anime')
-    Call<SearchAnime> getSearchResult(@Query("query") String query);
+    @GET("/search/anime")
+    Call<SearchAnime> getSearchResult(@Query("q") String query);
 
     @GET("/anime/{Mal_id}")
     Call<AnimeDetail> getAnimeDetail(@Path("Mal_id") int MalId);

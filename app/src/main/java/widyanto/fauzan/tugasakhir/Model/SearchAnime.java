@@ -1,7 +1,6 @@
 package widyanto.fauzan.tugasakhir.Model;
 
 import java.util.List;
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
 public class SearchAnime{
