@@ -80,8 +80,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchHold
         TextView titleAnime;
         @BindView(R.id.typeAnime)
         TextView typeAnime;
-        @BindView(R.id.startEndAnime)
-        TextView startEndAnime;
         @BindView(R.id.membersAnime)
         TextView membersAnime;
         @BindView(R.id.scoreAnime)

@@ -1,6 +1,9 @@
 package widyanto.fauzan.tugasakhir;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.Image;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -86,7 +89,7 @@ public class AnimeDetail extends AppCompatActivity {
                 formatSymbols.setGroupingSeparator('.');
                 decimalFormat.setDecimalFormatSymbols(formatSymbols);
 
-                TitleAnime.setText(animeDetail.getTitleEnglish());
+                TitleAnime.setText(animeDetail.getTitle());
                 Picasso.get().load(animeDetail.getImageUrl()).into(imageAnime);
                 animeScore.setText(String.format("Score : %s",String.valueOf(animeDetail.getScore())));
                 animeRanked.setText(String.format("Ranked : %s",String.valueOf(animeDetail.getRank())));

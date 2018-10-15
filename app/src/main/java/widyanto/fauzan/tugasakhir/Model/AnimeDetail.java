@@ -8,6 +8,9 @@ public class AnimeDetail{
 	@SerializedName("title_japanese")
 	private String titleJapanese;
 
+	@SerializedName("title")
+	private String title;
+
 	@SerializedName("favorites")
 	private int favorites;
 
@@ -89,227 +92,235 @@ public class AnimeDetail{
 	@SerializedName("status")
 	private String status;
 
-	public void setTitleJapanese(String titleJapanese){
-		this.titleJapanese = titleJapanese;
-	}
-
-	public String getTitleJapanese(){
+	public String getTitleJapanese() {
 		return titleJapanese;
 	}
 
-	public void setFavorites(int favorites){
-		this.favorites = favorites;
+	public void setTitleJapanese(String titleJapanese) {
+		this.titleJapanese = titleJapanese;
 	}
 
-	public int getFavorites(){
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public int getFavorites() {
 		return favorites;
 	}
 
-	public void setBroadcast(String broadcast){
-		this.broadcast = broadcast;
+	public void setFavorites(int favorites) {
+		this.favorites = favorites;
 	}
 
-	public String getBroadcast(){
+	public String getBroadcast() {
 		return broadcast;
 	}
 
-	public void setStudio(List<StudioItem> studio){
-		this.studio = studio;
+	public void setBroadcast(String broadcast) {
+		this.broadcast = broadcast;
 	}
 
-	public List<StudioItem> getStudio(){
+	public List<StudioItem> getStudio() {
 		return studio;
 	}
 
-	public void setRating(String rating){
-		this.rating = rating;
+	public void setStudio(List<StudioItem> studio) {
+		this.studio = studio;
 	}
 
-	public String getRating(){
+	public String getRating() {
 		return rating;
 	}
 
-	public void setScoredBy(int scoredBy){
-		this.scoredBy = scoredBy;
+	public void setRating(String rating) {
+		this.rating = rating;
 	}
 
-	public int getScoredBy(){
+	public int getScoredBy() {
 		return scoredBy;
 	}
 
-	public void setPremiered(String premiered){
-		this.premiered = premiered;
+	public void setScoredBy(int scoredBy) {
+		this.scoredBy = scoredBy;
 	}
 
-	public String getPremiered(){
+	public String getPremiered() {
 		return premiered;
 	}
 
-	public void setTitleSynonyms(String titleSynonyms){
-		this.titleSynonyms = titleSynonyms;
+	public void setPremiered(String premiered) {
+		this.premiered = premiered;
 	}
 
-	public String getTitleSynonyms(){
+	public String getTitleSynonyms() {
 		return titleSynonyms;
 	}
 
-	public void setSource(String source){
-		this.source = source;
+	public void setTitleSynonyms(String titleSynonyms) {
+		this.titleSynonyms = titleSynonyms;
 	}
 
-	public String getSource(){
+	public String getSource() {
 		return source;
 	}
 
-	public void setType(String type){
-		this.type = type;
+	public void setSource(String source) {
+		this.source = source;
 	}
 
-	public String getType(){
+	public String getType() {
 		return type;
 	}
 
-	public void setDuration(String duration){
-		this.duration = duration;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getDuration(){
+	public String getDuration() {
 		return duration;
 	}
 
-	public void setScore(double score){
-		this.score = score;
+	public void setDuration(String duration) {
+		this.duration = duration;
 	}
 
-	public double getScore(){
+	public double getScore() {
 		return score;
 	}
 
-	public void setPopularity(int popularity){
-		this.popularity = popularity;
+	public void setScore(double score) {
+		this.score = score;
 	}
 
-	public int getPopularity(){
+	public int getPopularity() {
 		return popularity;
 	}
 
-	public void setMembers(int members){
-		this.members = members;
+	public void setPopularity(int popularity) {
+		this.popularity = popularity;
 	}
 
-	public int getMembers(){
+	public int getMembers() {
 		return members;
 	}
 
-	public void setGenre(List<GenreItem> genre){
-		this.genre = genre;
+	public void setMembers(int members) {
+		this.members = members;
 	}
 
-	public List<GenreItem> getGenre(){
+	public List<GenreItem> getGenre() {
 		return genre;
 	}
 
-	public void setTitleEnglish(String titleEnglish){
-		this.titleEnglish = titleEnglish;
+	public void setGenre(List<GenreItem> genre) {
+		this.genre = genre;
 	}
 
-	public String getTitleEnglish(){
+	public String getTitleEnglish() {
 		return titleEnglish;
 	}
 
-	public void setRank(int rank){
-		this.rank = rank;
+	public void setTitleEnglish(String titleEnglish) {
+		this.titleEnglish = titleEnglish;
 	}
 
-	public int getRank(){
+	public int getRank() {
 		return rank;
 	}
 
-	public void setAiring(boolean airing){
-		this.airing = airing;
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 
-	public boolean isAiring(){
+	public boolean isAiring() {
 		return airing;
 	}
 
-	public void setEpisodes(int episodes){
-		this.episodes = episodes;
+	public void setAiring(boolean airing) {
+		this.airing = airing;
 	}
 
-	public int getEpisodes(){
+	public int getEpisodes() {
 		return episodes;
 	}
 
-	public void setAired(Aired aired){
-		this.aired = aired;
+	public void setEpisodes(int episodes) {
+		this.episodes = episodes;
 	}
 
-	public Aired getAired(){
+	public Aired getAired() {
 		return aired;
 	}
 
-	public void setImageUrl(String imageUrl){
-		this.imageUrl = imageUrl;
+	public void setAired(Aired aired) {
+		this.aired = aired;
 	}
 
-	public String getImageUrl(){
+	public String getImageUrl() {
 		return imageUrl;
 	}
 
-	public void setMalId(int malId){
-		this.malId = malId;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
-	public int getMalId(){
+	public int getMalId() {
 		return malId;
 	}
 
-	public void setSynopsis(String synopsis){
-		this.synopsis = synopsis;
+	public void setMalId(int malId) {
+		this.malId = malId;
 	}
 
-	public String getSynopsis(){
+	public String getSynopsis() {
 		return synopsis;
 	}
 
-	public void setAiredString(String airedString){
-		this.airedString = airedString;
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
 	}
 
-	public String getAiredString(){
+	public String getAiredString() {
 		return airedString;
 	}
 
-	public void setTrailerUrl(String trailerUrl){
-		this.trailerUrl = trailerUrl;
+	public void setAiredString(String airedString) {
+		this.airedString = airedString;
 	}
 
-	public String getTrailerUrl(){
+	public String getTrailerUrl() {
 		return trailerUrl;
 	}
 
-	public void setBackground(String background){
-		this.background = background;
+	public void setTrailerUrl(String trailerUrl) {
+		this.trailerUrl = trailerUrl;
 	}
 
-	public String getBackground(){
+	public String getBackground() {
 		return background;
 	}
 
-	public void setProducer(List<ProducerItem> producer){
-		this.producer = producer;
+	public void setBackground(String background) {
+		this.background = background;
 	}
 
-	public List<ProducerItem> getProducer(){
+	public List<ProducerItem> getProducer() {
 		return producer;
 	}
 
-	public void setStatus(String status){
-		this.status = status;
+	public void setProducer(List<ProducerItem> producer) {
+		this.producer = producer;
 	}
 
-	public String getStatus(){
+	public String getStatus() {
 		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
