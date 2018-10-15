@@ -59,6 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             public void onClick(View v) {
                 Intent i = new Intent(recyclerViewHolder.itemView.getContext(), AnimeDetail.class);
                 i.putExtra("MAL_ID", topItem.getMalId());
+                i.putExtra("Anime_Name", topItem.getTitle());
                 recyclerViewHolder.itemView.getContext().startActivity(i);
             }
         });

@@ -1,17 +1,15 @@
 package widyanto.fauzan.tugasakhir;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.media.Image;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -26,21 +24,15 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import widyanto.fauzan.tugasakhir.Adapter.AnimeDetailAdapter;
 import widyanto.fauzan.tugasakhir.Adapter.ViewPagerAdapter;
 import widyanto.fauzan.tugasakhir.Data.ApiService;
 import widyanto.fauzan.tugasakhir.Data.DataRetrofit;
-import widyanto.fauzan.tugasakhir.Model.Aired;
 import widyanto.fauzan.tugasakhir.Model.GenreItem;
 import widyanto.fauzan.tugasakhir.Model.ProducerItem;
 import widyanto.fauzan.tugasakhir.Model.StudioItem;
 
 public class AnimeDetail extends AppCompatActivity {
 
-    @BindView(R.id.TitleAnime)
-    TextView TitleAnime;
-    @BindView(R.id.jenis)
-    TextView jenis;
     @BindView(R.id.imageAnime)
     ImageView imageAnime;
     @BindView(R.id.animeScore)
@@ -57,6 +49,13 @@ public class AnimeDetail extends AppCompatActivity {
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    @BindView(R.id.Loading)
+    ProgressBar Loading;
+    @BindView(R.id.LoadingPager)
+    ProgressBar LoadingPager;
+    @BindView(R.id.animeType)
+    TextView animeType;
+
 
     private List<Fragment> fragments;
     private List<String> tabTitle;
@@ -69,11 +68,27 @@ public class AnimeDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anime_detail);
         ButterKnife.bind(this);
-
         Intent intent = getIntent();
-        int Mal_id = intent.getIntExtra("MAL_ID",1);
+        int Mal_id = intent.getIntExtra("MAL_ID", 1);
+        String Anime_Name = intent.getStringExtra("Anime_Name");
+        getSupportActionBar().setTitle(Anime_Name);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ResponseData(Mal_id);
+    }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
+    }
+
+    private void ResponseData(int Mal_id) {
         ApiService apiService = DataRetrofit.getData().create(ApiService.class);
+        Loading.setVisibility(View.VISIBLE);
+        LoadingPager.setVisibility(View.VISIBLE);
+        imageAnime.setVisibility(View.GONE);
+        viewPager.setVisibility(View.GONE);
+
         apiService.getAnimeDetail(Mal_id).enqueue(new Callback<widyanto.fauzan.tugasakhir.Model.AnimeDetail>() {
             @Override
             public void onResponse(Call<widyanto.fauzan.tugasakhir.Model.AnimeDetail> call, Response<widyanto.fauzan.tugasakhir.Model.AnimeDetail> response) {
@@ -89,13 +104,18 @@ public class AnimeDetail extends AppCompatActivity {
                 formatSymbols.setGroupingSeparator('.');
                 decimalFormat.setDecimalFormatSymbols(formatSymbols);
 
-                TitleAnime.setText(animeDetail.getTitle());
+                Loading.setVisibility(View.GONE);
+                LoadingPager.setVisibility(View.GONE);
+                imageAnime.setVisibility(View.VISIBLE);
+                viewPager.setVisibility(View.VISIBLE);
+
                 Picasso.get().load(animeDetail.getImageUrl()).into(imageAnime);
-                animeScore.setText(String.format("Score : %s",String.valueOf(animeDetail.getScore())));
-                animeRanked.setText(String.format("Ranked : %s",String.valueOf(animeDetail.getRank())));
-                animePopularity.setText(String.format("Popularity : %s",String.valueOf(animeDetail.getPopularity())));
-                animeMembers.setText(String.format("Members : %s",String.valueOf(decimalFormat.format(animeDetail.getMembers()))));
-                animeFavorites.setText(String.format("Favorites : %s",String.valueOf(animeDetail.getFavorites())));
+                animeType.setText(String.format("Type : %s", String.valueOf(animeDetail.getType())));
+                animeScore.setText(String.format("Score : %s", String.valueOf(animeDetail.getScore())));
+                animeRanked.setText(String.format("Ranked : %s", String.valueOf(animeDetail.getRank())));
+                animePopularity.setText(String.format("Popularity : %s", String.valueOf(animeDetail.getPopularity())));
+                animeMembers.setText(String.format("Members : %s", String.valueOf(decimalFormat.format(animeDetail.getMembers()))));
+                animeFavorites.setText(String.format("Favorites : %s", String.valueOf(animeDetail.getFavorites())));
 
                 fragmentInformation = new FragmentInformation();
                 fragmentInformation.setAnimeDetailList(animeDetailList);
@@ -114,7 +134,7 @@ public class AnimeDetail extends AppCompatActivity {
                 tabTitle.add("Information");
                 tabTitle.add("Synopsis");
 
-                viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),fragments,tabTitle));
+                viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments, tabTitle));
                 tabLayout.setupWithViewPager(viewPager);
 
             }
