@@ -62,6 +62,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchHold
             public void onClick(View v) {
                 Intent i = new Intent(searchHolder.itemView.getContext(), AnimeDetail.class);
                 i.putExtra("MAL_ID", resultItem.getMalId());
+                i.putExtra("Anime_Name", resultItem.getTitle());
                 searchHolder.itemView.getContext().startActivity(i);
             }
         });

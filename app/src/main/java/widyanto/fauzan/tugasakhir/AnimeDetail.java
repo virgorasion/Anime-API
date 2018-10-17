@@ -53,9 +53,6 @@ public class AnimeDetail extends AppCompatActivity {
     ProgressBar Loading;
     @BindView(R.id.LoadingPager)
     ProgressBar LoadingPager;
-    @BindView(R.id.animeType)
-    TextView animeType;
-
 
     private List<Fragment> fragments;
     private List<String> tabTitle;
@@ -110,7 +107,6 @@ public class AnimeDetail extends AppCompatActivity {
                 viewPager.setVisibility(View.VISIBLE);
 
                 Picasso.get().load(animeDetail.getImageUrl()).into(imageAnime);
-                animeType.setText(String.format("Type : %s", String.valueOf(animeDetail.getType())));
                 animeScore.setText(String.format("Score : %s", String.valueOf(animeDetail.getScore())));
                 animeRanked.setText(String.format("Ranked : %s", String.valueOf(animeDetail.getRank())));
                 animePopularity.setText(String.format("Popularity : %s", String.valueOf(animeDetail.getPopularity())));

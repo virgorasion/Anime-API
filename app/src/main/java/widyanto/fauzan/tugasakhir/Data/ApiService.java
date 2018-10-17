@@ -10,8 +10,8 @@ import widyanto.fauzan.tugasakhir.Model.TopAnime;
 
 public interface ApiService {
 
-    @GET("/v3/top/anime/1")
-    Call<TopAnime> getAllAnime();
+    @GET("/v3/top/anime/{page}")
+    Call<TopAnime> getAllAnime(@Path("page") int page);
 
     @GET("/v3/top/anime/1/airing")
     Call<TopAnime> getTopAiring();

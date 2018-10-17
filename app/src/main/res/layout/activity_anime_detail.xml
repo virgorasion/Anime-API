@@ -52,14 +52,6 @@
                 android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/animeType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:text="Type :"/>
-
-            <TextView
                 android:id="@+id/animeScore"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
