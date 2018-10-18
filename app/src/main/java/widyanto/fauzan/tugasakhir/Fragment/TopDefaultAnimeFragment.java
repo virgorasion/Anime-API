@@ -62,14 +62,6 @@ public class TopDefaultAnimeFragment extends Fragment {
         page = 1;
 
         ResponseData(page);
-        endlessOnScrollListener = new EndlessOnScrollListener() {
-            @Override
-            public void onLoadMore() {
-                page = page + 1;
-                ResponseData(page);
-            }
-        };
-
         Refresh.setColorSchemeColors(
                 Color.parseColor("#3F51B5"),
                 Color.parseColor("#C90000"),

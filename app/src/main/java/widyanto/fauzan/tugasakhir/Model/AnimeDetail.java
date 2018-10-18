@@ -83,6 +83,9 @@ public class AnimeDetail{
 	@SerializedName("trailer_url")
 	private String trailerUrl;
 
+	@SerializedName("link_canonical")
+	private String linkCanonical;
+
 	@SerializedName("background")
 	private String background;
 
@@ -114,6 +117,14 @@ public class AnimeDetail{
 
 	public void setFavorites(int favorites) {
 		this.favorites = favorites;
+	}
+
+	public String getLinkCanonical() {
+		return linkCanonical;
+	}
+
+	public void setLinkCanonical(String linkCanonical) {
+		this.linkCanonical = linkCanonical;
 	}
 
 	public String getBroadcast() {
