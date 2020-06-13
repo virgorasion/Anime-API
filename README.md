@@ -10,7 +10,7 @@ animeQ is an anime and manga catalog application. This application facilitates f
 
 ___
 ## Requirements
- - Android Studio
+ * [Android Studio](https://developer.android.com/studio)
 
 ___
 ## Installation
