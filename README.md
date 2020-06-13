@@ -26,11 +26,9 @@ $ cd Anime-API
 Open android studio and open the project, wait until gradle finish up. and done.
 
 ___
-## Big Thanks to
-Allah SWT. <br />
-[Jikan API](https://jikan.moe/)<br />
-[Aditya Chandra](https://github.com/inibukanadit)<br />
-[Ampersanda](https://github.com/ampersanda)<br />
+## Contributors
+[Aditya Chandra](https://github.com/inibukanadit)
+[Ampersanda](https://github.com/ampersanda)
 [SMK Koding](https://smkcoding.id/)
 
 ___
