@@ -3,6 +3,8 @@ package widyanto.fauzan.tugasakhir.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -63,6 +65,7 @@ public class OvaAnimeFragment extends Fragment {
             @Override
             public void onRefresh() {
                 ResponseData(false);
+                Loading.setVisibility(View.GONE);
             }
         });
 
@@ -71,34 +74,40 @@ public class OvaAnimeFragment extends Fragment {
 
     private void ResponseData(final Boolean loading){
         ApiService apiService = DataRetrofit.getData().create(ApiService.class);
+        Loading.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+        apiService.getTopOva()
+                .enqueue(new Callback<TopAnime>() {
+                    @Override
+                    public void onResponse(Call<TopAnime> call, Response<TopAnime> response) {
+                        List<TopAnimeItem> Items = response.body().getTop();
+                        //Log.d("GET_API", String.valueOf(Items.size()));
 
-        try {
-            apiService.getTopOva()
-                    .enqueue(new Callback<TopAnime>() {
-                        @Override
-                        public void onResponse(Call<TopAnime> call, Response<TopAnime> response) {
-                            List<TopAnimeItem> Items = response.body().getTop();
-                            //Log.d("GET_API", String.valueOf(Items.size()));
+                        Refresh.setRefreshing(false);
+                        Loading.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
 
-                            Refresh.setRefreshing(false);
-                            Loading.setVisibility(View.GONE);
+                        if (Items != null){
+                            layoutAdapter = new RecyclerAdapter(Items);
+                            recyclerView.setAdapter(layoutAdapter);
+                        }else{
+                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-                            if (Items != null){
-                                layoutAdapter = new RecyclerAdapter(Items);
-                                recyclerView.setAdapter(layoutAdapter);
-                            }else{
-                                Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(Call<TopAnime> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Low Connection !", Toast.LENGTH_SHORT).show();
+                        Loading.setVisibility(View.GONE);
+                        Refresh.setRefreshing(false);
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Snackbar.make(getView(), "Silahkan periksa koneksi anda !", Snackbar.LENGTH_LONG).show();
                             }
-                        }
-
-                        @Override
-                        public void onFailure(Call<TopAnime> call, Throwable t) {
-                            Toast.makeText(getActivity(), "Low Connection !", Toast.LENGTH_SHORT).show();
-                            Refresh.setRefreshing(false);
-                        }
-                    });
-        }catch (Exception e){
-
-        }
+                        },4000);
+                    }
+                });
     }
 }

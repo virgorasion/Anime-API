@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -60,6 +62,7 @@ public class UpcomingAnimeFragment extends Fragment {
             @Override
             public void onRefresh() {
                 ResponseData();
+                Loading.setVisibility(View.GONE);
             }
         });
         return view;
@@ -67,7 +70,8 @@ public class UpcomingAnimeFragment extends Fragment {
 
     private void ResponseData(){
         ApiService apiService = DataRetrofit.getData().create(ApiService.class);
-
+        Loading.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
         apiService.getTopUpcoming()
                 .enqueue(new Callback<TopAnime>() {
                     @Override
@@ -77,6 +81,7 @@ public class UpcomingAnimeFragment extends Fragment {
 
                         Refresh.setRefreshing(false);
                         Loading.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
 
                         if (Items != null){
                             layoutAdapter = new RecyclerAdapter(Items);
@@ -89,7 +94,15 @@ public class UpcomingAnimeFragment extends Fragment {
                     @Override
                     public void onFailure(Call<TopAnime> call, Throwable t) {
                         Toast.makeText(getActivity(), "Low Connection !", Toast.LENGTH_SHORT).show();
+                        Loading.setVisibility(View.GONE);
                         Refresh.setRefreshing(false);
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Snackbar.make(getView(), "Silahkan periksa koneksi anda !", Snackbar.LENGTH_LONG).show();
+                            }
+                        },4000);
                     }
                 });
     }
