@@ -1,12 +1,11 @@
 # AnimeQ
-
-<div>
-  <img height="400px" src="https://raw.githubusercontent.com/ai-null/Anime-API/master/Screenshot_2018-10-30-20-44-17-664_widyanto.fauzan.tugasakhir.png"/>
-</div>
-
-___
-## Description
 animeQ is an anime and manga catalog application. This application facilitates finding anime based on its title and provides detailed information of it. The data used on this aplication is provided and managed by [Jikan moe](https://jikan.moe/).
+
+<p align="center">
+  <img height="350px" src="https://raw.githubusercontent.com/ai-null/Anime-API/master/screenshots/loading-screen.png"/>
+  <img height="350px" src="https://raw.githubusercontent.com/ai-null/Anime-API/master/screenshots/home-screen.png"/>
+  <img height="350px" src="https://raw.githubusercontent.com/ai-null/Anime-API/master/screenshots/search-result-screen.png"/>
+</p>
 
 ___
 ## Requirements
