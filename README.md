@@ -21,7 +21,6 @@ copy and paste this command on the terminal or you can download it manually.
 $ git clone https://github.com/ai-null/Anime-API.git
 $ cd Anime-API
 ```
-___
 ##### 2. Open project and build
 Open android studio and open the project, wait until gradle finish up. and done.
 
