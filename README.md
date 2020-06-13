@@ -1,6 +1,6 @@
 # AnimeQ
 
-<div style="display=flex; justify-content=center; align-items: center;">
+<div>
   <img height="400px" src="https://raw.githubusercontent.com/ai-null/Anime-API/master/Screenshot_2018-10-30-20-44-17-664_widyanto.fauzan.tugasakhir.png"/>
 </div>
 
@@ -10,10 +10,11 @@ animeQ is an anime and manga catalog application. This application facilitates f
 
 ___
 ## Installation
-#### Clone the repository
-copy and paste this command on the terminal  `git clone https://github.com/ai-null/Anime-API.git` or you can download it manually.
+##### 1. Clone repository
+copy and paste this command on the terminal or you can download it manually.
+<br />`$ git clone https://github.com/ai-null/Anime-API.git`
 
-#### Open project and build
+##### 2. Open project and build
 Open android studio and open the project, wait until gradle finish up. and done.
 
 ___
