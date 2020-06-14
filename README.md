@@ -8,10 +8,6 @@ animeQ is an anime and manga catalog application. This application facilitates f
 </p>
 
 ___
-## Requirements
- * [Android Studio](https://developer.android.com/studio)
-
-___
 ## Installation
 ##### 1. Clone repository
 copy and paste this command on the terminal or you can download it manually.
@@ -21,7 +17,7 @@ $ git clone https://github.com/ai-null/Anime-API.git
 $ cd Anime-API
 ```
 ##### 2. Open project and build
-Open android studio and open the project, wait until gradle finish up. and done.
+Open the project in [Android Studio](https://developer.android.com/studio), wait until gradle finish up. and you're all set.
 
 ___
 ## Contributors
