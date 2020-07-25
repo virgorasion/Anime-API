@@ -17,7 +17,7 @@ ___
 copy and paste this command on the terminal or you can download it manually.
 <br />
 ```sh
-$ git clone https://github.com/ai-null/Anime-API.git
+$ git clone https://github.com/virgorasion/Anime-API.git
 $ cd Anime-API
 ```
 ##### 2. Open project and build
