@@ -1,24 +1,34 @@
 # AnimeQ
+animeQ is an anime and manga catalog application. This application facilitates finding anime based on its title and provides detailed information of it. The data used on this aplication is provided and managed by [Jikan moe](https://jikan.moe/).
 
-AnimeQ adalah plaform untuk menjelajah anime lengkap karena mengambil API dari MyAnimeList.
+<p align="center">
+  <img height="350px" src="https://raw.githubusercontent.com/ai-null/Anime-API/master/screenshots/loading-screen.png"/>
+  <img height="350px" src="https://raw.githubusercontent.com/ai-null/Anime-API/master/screenshots/home-screen.png"/>
+  <img height="350px" src="https://raw.githubusercontent.com/ai-null/Anime-API/master/screenshots/search-result-screen.png"/>
+</p>
 
-<div> <img width="250" height="500" src="https://github.com/virgorasion/Anime-API/blob/master/Screenshot_2018-10-30-20-49-11-373_widyanto.fauzan.tugasakhir.png"/>
-<img width="250" height="500" src="https://github.com/virgorasion/Anime-API/blob/master/Screenshot_2018-10-30-20-44-17-664_widyanto.fauzan.tugasakhir.png"/>
-<img width="250" height="500" src="https://github.com/virgorasion/Anime-API/blob/master/Screenshot_2018-10-30-20-48-49-652_widyanto.fauzan.tugasakhir.png"/>
-<img width="250" height="500" src="https://github.com/virgorasion/Anime-API/blob/master/Screenshot_2018-10-30-20-48-54-847_widyanto.fauzan.tugasakhir.png"/></div>
+___
+## Requirements
+ * [Android Studio](https://developer.android.com/studio)
 
-#### Penggunaan
-* Clone repository ini
-* Buka menggunakan Android Studio
-* Done
+___
+## Installation
+##### 1. Clone repository
+copy and paste this command on the terminal or you can download it manually.
+<br />
+```sh
+$ git clone https://github.com/ai-null/Anime-API.git
+$ cd Anime-API
+```
+##### 2. Open project and build
+Open android studio and open the project, wait until gradle finish up. and done.
 
-#### Thanks to
-Allah SWT. </br>
-Jikan API (https://jikan.moe/)</br>
-Aditya Chandra (https://github.com/inibukanadit)</br>
-&A (https://github.com/ampersanda)</br>
-SMK Koding (https://smkcoding.id/)
+___
+## Contributors
+[Aditya Chandra](https://github.com/inibukanadit) <br/>
+[Ampersanda](https://github.com/ampersanda) <br/>
+[SMK Koding](https://smkcoding.id/)
 
-
-#### License
+___
+## License
 GNU General Public License v3.0 licensed
