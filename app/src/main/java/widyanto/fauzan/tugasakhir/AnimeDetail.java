@@ -1,6 +1,7 @@
 package widyanto.fauzan.tugasakhir;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -53,9 +54,6 @@ public class AnimeDetail extends AppCompatActivity {
     ProgressBar Loading;
     @BindView(R.id.LoadingPager)
     ProgressBar LoadingPager;
-    @BindView(R.id.animeType)
-    TextView animeType;
-
 
     private List<Fragment> fragments;
     private List<String> tabTitle;
@@ -93,7 +91,7 @@ public class AnimeDetail extends AppCompatActivity {
             @Override
             public void onResponse(Call<widyanto.fauzan.tugasakhir.Model.AnimeDetail> call, Response<widyanto.fauzan.tugasakhir.Model.AnimeDetail> response) {
                 List<widyanto.fauzan.tugasakhir.Model.AnimeDetail> animeDetailList = new ArrayList<>();
-                widyanto.fauzan.tugasakhir.Model.AnimeDetail animeDetail = response.body();
+                final widyanto.fauzan.tugasakhir.Model.AnimeDetail animeDetail = response.body();
                 List<GenreItem> itemsGenre = animeDetail.getGenre();
                 List<ProducerItem> itemsProducer = animeDetail.getProducer();
                 List<StudioItem> itemsStudio = animeDetail.getStudio();
@@ -110,12 +108,21 @@ public class AnimeDetail extends AppCompatActivity {
                 viewPager.setVisibility(View.VISIBLE);
 
                 Picasso.get().load(animeDetail.getImageUrl()).into(imageAnime);
-                animeType.setText(String.format("Type : %s", String.valueOf(animeDetail.getType())));
                 animeScore.setText(String.format("Score : %s", String.valueOf(animeDetail.getScore())));
                 animeRanked.setText(String.format("Ranked : %s", String.valueOf(animeDetail.getRank())));
                 animePopularity.setText(String.format("Popularity : %s", String.valueOf(animeDetail.getPopularity())));
                 animeMembers.setText(String.format("Members : %s", String.valueOf(decimalFormat.format(animeDetail.getMembers()))));
                 animeFavorites.setText(String.format("Favorites : %s", String.valueOf(animeDetail.getFavorites())));
+
+                imageAnime.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String Url = animeDetail.getLinkCanonical();
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(Url));
+                        startActivity(i);
+                    }
+                });
 
                 fragmentInformation = new FragmentInformation();
                 fragmentInformation.setAnimeDetailList(animeDetailList);

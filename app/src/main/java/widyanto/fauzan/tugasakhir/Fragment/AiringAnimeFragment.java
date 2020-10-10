@@ -3,6 +3,8 @@ package widyanto.fauzan.tugasakhir.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,6 +64,7 @@ public class AiringAnimeFragment extends Fragment {
             @Override
             public void onRefresh() {
                 ResponseData(false);
+                Loading.setVisibility(View.GONE);
             }
         });
         return view;
@@ -69,6 +72,8 @@ public class AiringAnimeFragment extends Fragment {
 
     private void ResponseData(final Boolean loading){
         ApiService apiService = DataRetrofit.getData().create(ApiService.class);
+        Loading.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
         try {
             apiService.getTopAiring()
                     .enqueue(new Callback<TopAnime>() {
@@ -78,8 +83,8 @@ public class AiringAnimeFragment extends Fragment {
                             //Log.d("GET_API", String.valueOf(Items.size()));
 
                             Refresh.setRefreshing(false);
-                            recyclerView.setVisibility(View.VISIBLE);
                             Loading.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
 
                             if (Items != null){
                                 layoutAdapter = new RecyclerAdapter(Items);
@@ -92,7 +97,15 @@ public class AiringAnimeFragment extends Fragment {
                         @Override
                         public void onFailure(Call<TopAnime> call, Throwable t) {
                             Toast.makeText(getActivity(), "Low Connection !", Toast.LENGTH_SHORT).show();
+                            Loading.setVisibility(View.GONE);
                             Refresh.setRefreshing(false);
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Snackbar.make(getView(), "Silahkan periksa koneksi anda !", Snackbar.LENGTH_LONG).show();
+                                }
+                            },4000);
                         }
                     });
         }catch (Exception e){
